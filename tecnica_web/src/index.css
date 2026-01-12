@@ -1,0 +1,8 @@
+body{
+   
+    font-family: 'Poppins', sans-serif;
+    padding-top: 75px;
+    background-image: url("assets/images/fondoBody.jpg");
+    background-size: 100%;
+    background-attachment: fixed;
+}

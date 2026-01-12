@@ -1,0 +1,27 @@
+services:
+  # Proyecto Web (Vite/Node + Nginx)
+  web_principal:
+    build: ./tecnica_web  # <--- Coincide con tu carpeta
+    container_name: contenedor_tecnica
+    ports:
+      - "80:80"
+    depends_on:
+      - flutter_app
+    networks:
+      - app_net
+
+  # Proyecto Flutter Web
+  flutter_app:
+    build: ./tecnica_app_profesor # <--- Coincide con tu carpeta
+    container_name: flutter_web_interno
+    networks:
+      - app_net
+
+  # Aquí añadirías tu API y Base de Datos siguiendo la misma lógica
+  # api:
+  #   build: ./tu_carpeta_api
+  # ...
+
+networks:
+  app_net:
+    driver: bridge

@@ -1,0 +1,71 @@
+.conCard{
+
+  box-shadow: 10px 10px #0094DC ;
+  border: solid 3px rgb(218, 200, 200);
+   
+}
+
+.tarjetas{
+  width: 18rem;
+  height: 100%;                     /* ocupar altura completa */
+  display: flex;
+  flex-direction: column;           /* organiza el contenido verticalmente */
+  justify-content: space-between;   /* reparte el espacio (botón al final) */
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;     
+}
+
+.btnColor {
+  background-color: #055b8d;          /* azul oscuro */
+  color: white;
+  border: none;
+  border-radius: 0.5rem;              /* bordes suaves */
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Efecto hover */
+.btnColor:hover {
+  background-color: #0074cc;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Efecto cuando se presiona */
+.btnColor:active {
+  background-color: #004d80;
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto de enfoque (accesibilidad) */
+.btnColor:focus {
+  outline: 3px solid #aad4f5;
+  outline-offset: 2px;
+}
+/* Efecto al pasar el mouse por la tarjeta */
+.tarjetas {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjetas:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto en la imagen dentro de la tarjeta */
+.tarjetas img {
+    transition: filter 0.3s ease;
+}
+
+.tarjetas:hover img {
+    filter: brightness(0.85);
+}
+

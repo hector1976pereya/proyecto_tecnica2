@@ -1,0 +1,12 @@
+.navbars{
+
+     background-color: #055B8D;
+     font-size: 1.3rem;
+    
+  
+}
+
+.navLinkBorder {
+    /* Define el borde: 1px de grosor, estilo sólido, color blanco */
+    border-left: 1px solid #fff; 
+}

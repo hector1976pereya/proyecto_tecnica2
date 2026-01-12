@@ -1,0 +1,49 @@
+####################################
+# Node / React
+####################################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+.env
+.env.local
+.env.development
+.env.production
+
+####################################
+# Flutter / Dart
+####################################
+.dart_tool/
+.packages
+.pub/
+.pub-cache/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+*.lock
+
+####################################
+# IDEs / Editores
+####################################
+.vscode/
+.idea/
+*.iml
+
+####################################
+# Sistemas Operativos
+####################################
+.DS_Store
+Thumbs.db
+
+####################################
+# Logs
+####################################
+*.log
+
+####################################
+# Docker
+####################################
+docker-compose.override.yml

@@ -1,0 +1,9 @@
+.subr{
+    height: 2px;
+    background-color: #007bff; 
+    border: none;
+}
+
+.cards{
+    max-width: 15rem;
+}
