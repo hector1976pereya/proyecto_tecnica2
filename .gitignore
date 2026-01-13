@@ -1,5 +1,5 @@
 ####################################
-# Node / React
+# Node / React / API (Node.js)
 ####################################
 node_modules/
 npm-debug.log*
@@ -8,10 +8,12 @@ yarn-error.log*
 pnpm-debug.log*
 dist/
 build/
+# Archivos de variables de entorno (CRÍTICO: Aquí están tus claves de MySQL)
 .env
 .env.local
 .env.development
 .env.production
+.env.test
 
 ####################################
 # Flutter / Dart
@@ -26,11 +28,24 @@ build/
 *.lock
 
 ####################################
+# Docker & Base de Datos
+####################################
+docker-compose.override.yml
+# IGNORAR LA CARPETA DE DATOS DE MYSQL
+# Si creaste un volumen local (ej: ./mysql_data), no lo subas a Git
+mysql_data/
+db_data/
+*.sql.gz
+*.sql
+
+####################################
 # IDEs / Editores
 ####################################
 .vscode/
 .idea/
 *.iml
+*.sublime-project
+*.sublime-workspace
 
 ####################################
 # Sistemas Operativos
@@ -42,8 +57,4 @@ Thumbs.db
 # Logs
 ####################################
 *.log
-
-####################################
-# Docker
-####################################
-docker-compose.override.yml
+logs/

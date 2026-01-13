@@ -1,27 +1,57 @@
 services:
-  # Proyecto Web (Vite/Node + Nginx)
+  # Base de Datos
+  db_mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: escuela
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app_net
+
+  # Tu API Node.js (según tu imagen)
+  api:
+    build: ./tecnica_api
+    container_name: api_tecnica
+    restart: always
+    ports:
+      - "8080:3000" # <--- MAPEAMOS: Tu PC (8080) al contenedor (3000)
+    depends_on:
+      - db_mysql
+    environment:
+      PORT: 3000
+      DB_HOST: db_mysql
+      DB_USER: root
+      DB_PASSWORD: 
+      DB_NAME: escuela
+    networks:
+      - app_net
+
+  # Los frontends (Web y Flutter) se mantienen igual...
   web_principal:
-    build: ./tecnica_web  # <--- Coincide con tu carpeta
+    build: ./tecnica_web
     container_name: contenedor_tecnica
     ports:
       - "80:80"
-    depends_on:
-      - flutter_app
     networks:
       - app_net
 
-  # Proyecto Flutter Web
   flutter_app:
-    build: ./tecnica_app_profesor # <--- Coincide con tu carpeta
+    build: ./tecnica_app_profesor
     container_name: flutter_web_interno
+    ports:
+      - "8081:80"
     networks:
       - app_net
-
-  # Aquí añadirías tu API y Base de Datos siguiendo la misma lógica
-  # api:
-  #   build: ./tu_carpeta_api
-  # ...
 
 networks:
   app_net:
     driver: bridge
+
+volumes:
+  db_data:
