@@ -1,57 +1,67 @@
 services:
-  # Base de Datos
-  db_mysql:
-    image: mysql:8.0
-    container_name: mysql_db
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD:
-      MYSQL_DATABASE: escuela
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - app_net
-
-  # Tu API Node.js (según tu imagen)
-  api:
-    build: ./tecnica_api
-    container_name: api_tecnica
-    restart: always
-    ports:
-      - "8080:3000" # <--- MAPEAMOS: Tu PC (8080) al contenedor (3000)
-    depends_on:
-      - db_mysql
-    environment:
-      PORT: 3000
-      DB_HOST: db_mysql
-      DB_USER: root
-      DB_PASSWORD: 
-      DB_NAME: escuela
-    networks:
-      - app_net
-
-  # Los frontends (Web y Flutter) se mantienen igual...
-  web_principal:
-    build: ./tecnica_web
-    container_name: contenedor_tecnica
+  gateway:
+    image: nginx:alpine
+    container_name: gateway_proxy
     ports:
       - "80:80"
+    volumes:
+      - ./nginx_gateway.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - react_web
+      - flutter_app
+      - api
+    networks:
+      - app_net
+
+  react_web:
+    build: ./tecnica_web
+    container_name: contenedor_tecnica
+    expose:
+      - "80"
     networks:
       - app_net
 
   flutter_app:
     build: ./tecnica_app_profesor
     container_name: flutter_web_interno
-    ports:
-      - "8081:80"
+    expose:
+      - "80"
     networks:
       - app_net
 
-networks:
-  app_net:
-    driver: bridge
+  api:
+    build: ./tecnica_api
+    container_name: api_tecnica
+    restart: always
+    expose:
+      - "3000"
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: "12345678"
+      DB_NAME: escuela
+    depends_on:
+      - db
+    networks:
+      - app_net
+
+  db:
+    image: mysql:5.7
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "12345678"
+      MYSQL_DATABASE: escuela
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app_net  
 
 volumes:
   db_data:
+
+networks:
+  app_net:

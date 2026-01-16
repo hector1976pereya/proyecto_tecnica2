@@ -4,7 +4,8 @@ WORKDIR /app
 COPY . .
 RUN flutter pub get
 # CAMBIO AQUÍ: Añadimos el --base-href
-RUN flutter build web --base-href "/app/" 
+RUN flutter build web --base-href "/profesor/"
+
 
 # Etapa 2: Nginx
 FROM nginx:alpine

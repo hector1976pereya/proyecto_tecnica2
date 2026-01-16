@@ -85,7 +85,7 @@ const NavB = () => {
                   <li>
                     <a
                       className="dropdown-item"
-                      href="/app"
+                      href="/profesor/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
