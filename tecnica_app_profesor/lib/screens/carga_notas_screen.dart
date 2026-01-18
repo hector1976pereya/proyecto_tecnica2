@@ -23,7 +23,7 @@ class _RegistroNotasState extends State<RegistroNotas> {
   bool cargando = false;
 
 
-  final String baseUrl = "http://localhost:3000";
+  final String baseUrl = "http://192.168.1.200/api";
 
  
   Future<void> fetchAlumnos() async {
