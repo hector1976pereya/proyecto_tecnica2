@@ -38,7 +38,7 @@ services:
     environment:
       PORT: 3000
       DB_HOST: db
-      DB_USER: hector
+      DB_USER: root
       DB_PASSWORD: "12345678"
       DB_NAME: escuela
     depends_on:
